@@ -1,0 +1,41 @@
+=> INDEX
+
+links =  [
+    "https://www.nafix.fr/sorties/vtt-2018/janvier-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/fevrier-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/mars-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/avril-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/mai-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/juin-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/juillet-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/aout-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/septembre-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/octobre-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/novembre-56-29-22-35-44-0-0-0.html",
+    "https://www.nafix.fr/sorties/vtt-2018/decembre-56-29-22-35-44-0-0-0.html",
+  ],
+
+=> MOIS
+
+$.get('https://www.nafix.fr/sorties/vtt-2018/janvier-56-29-22-35-44-0-0-0.html', function(res) {
+        var link = $('tr > td > table > tbody > tr > td > a');
+        console.log(link);
+    });
+
+=> EVENT
+var event = {
+  date : $('#txt_ref_int_date_2').innerHTML,
+  departement : $('#txt_ref_int_dpt_2').innerHTML,
+  lieu : $('#txt_ref_int_lieu_2').innerHTML,
+  nomRando : $('#txt_ref_int_nom_2').innerHTML,
+  organisateur : $('#txt_ref_int_organisateur_2').innerHTML,
+  lieuRdv : $('#txt_ref_int_ldrdv_2').innerHTML,
+  horaire : $('#txt_ref_int_horaires_2').innerHTML,
+  site : $('#txt_ref_int_site_2').innerHTML,
+  prixPublic : $('#txt_ref_int_prix2 > textarea').innerHTML,
+  prixClub : $('#txt_ref_int_prix4 > textarea').innerHTML,
+  contact : $('#txt_ref_int_contacttxt > textarea').innerHTML,
+  description : $('#txt_ref_int_decription > textarea').innerHTML,
+  tract : $('#tract > a').href
+}
+console.log(event)
