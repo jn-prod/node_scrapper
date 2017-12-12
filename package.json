@@ -10,8 +10,6 @@
   "author": "Nicolas Jouanno",
   "license": "ISC",
   "dependencies": {
-    "electron": "^1.7.9",
     "jquery": "^3.2.1",
-    "nightmare": "^2.10.0"
   }
 }
