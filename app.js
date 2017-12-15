@@ -14,6 +14,8 @@ var json = (file)=>{
   return jsonContent
 }
 
+//NAFIX WORKS !!
+
 var nafixCrawler = ()=>{
   return new Promise((resolve,reject)=>{
     Promise
