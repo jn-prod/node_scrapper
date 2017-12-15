@@ -1,45 +1,60 @@
-/*
-
-//write jsonFile
-fs.writeFile('nafix.json', JSON.stringify(events), (err) => {
-  if (err) throw err;
-  console.log('The file has been saved!');
-});
-
-*/
-
-//Package dependencies
+    //Packagse dependencies
 var fs = require('fs'),
-    promise = require('bluebird'),
-    Nightmare = require('nightmare')
+    Promise = require('bluebird'),
+    Nightmare = require('nightmare'),
+    //Custom Modules  
+    crawlerOne = require('.routes/crawler/nafix_crawler'),
+    scrapperOne = require('.routes/scrapper/nafix_scrapper');
 
-//Custom Modules  
-    crawler = require('./crawler/nafix_crawler');
-    scrapper = require('./scrapper/nafix_scrapper');
+var index = []
 
-var startUrls = ["https://www.nafix.fr/sorties/vtt-2018/janvier-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/fevrier-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/mars-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/avril-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/mai-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/juin-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/juillet-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/aout-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/septembre-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/octobre-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/novembre-56-29-22-35-44-0-0-0.html",
-          "https://www.nafix.fr/sorties/vtt-2018/decembre-56-29-22-35-44-0-0-0.html"
-        ]
+var json = (file)=>{
+  var contents = fs.readFileSync(file)
+  var jsonContent = JSON.parse(contents)
+  return jsonContent
+}
 
-startUrls.forEach((val)=>{
-  crawler.crawlerInit(val)
-    .then((urls)=>{
-      console.log(urls)
-      //scrapperInit("https://www.nafix.fr/sorties/vtt-2018/" + urls)
-    })
-    .then((results)=>{
-      console.log(results)
-    })
-})
+var nafixCrawler = ()=>{
+  return new Promise((resolve,reject)=>{
+    Promise
+      .map(json('./init-crawler/nafix_urls.json'),(urls)=>{
+        return crawlerOne.crawlerInit(urls)
+      },{concurrency: 3})
+      .then((val)=>{
+        val.forEach((val)=>{
+          val.forEach((val)=>{
+            index.push("https://www.nafix.fr/sorties/vtt-2018/" + val)
+          })
+        })
+        return index
+      })
+      .then((res)=>{
+        fs.writeFile('./exports_files/nafix_index.json', JSON.stringify(res), (err) => {
+          if (err) throw err;
+          var crawlerEnd = 'OK'
+          resolve(crawlerEnd) 
+          console.log('The file nafix_index.json has been saved!');
+        })
 
+      })     
+  })
+ 
+}
 
+var nafixScrapper = ()=>{
+  Promise
+    .map(json('./exports_files/nafix_index.json'),(urls)=>{
+      return scrapperOne.scrapperInit(urls)
+    },{concurrency: 3})
+    .then((res)=>{
+      fs.writeFile('./exports_files/nafix_details.json', JSON.stringify(res), (err) => {
+        if (err) throw err;
+        console.log('The file nafix_details.json has been saved!');
+      })
+    })  
+}
+
+nafixCrawler()
+  .then((go)=>{
+    return nafixScrapper()
+  })
