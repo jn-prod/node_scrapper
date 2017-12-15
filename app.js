@@ -2,11 +2,16 @@
 var fs = require('fs'),
     Promise = require('bluebird'),
     Nightmare = require('nightmare'),
-    //Custom Modules  
-    crawlerOne = require('./routes/crawler/nafix_crawler'),
-    scrapperOne = require('./routes/scrapper/nafix_scrapper');
 
-var index = []
+    //Custom Modules NAFIX
+    crawlerOne = require('./routes/crawler/nafix_crawler'),
+    scrapperOne = require('./routes/scrapper/nafix_scrapper'),
+    //Custom Modules KLIKEGO
+    crawlerTwo = require('./routes/crawler/klikego_crawler'),
+    scrapperTwo = require('./routes/scrapper/klikego_scrapper');
+
+var indexOne = [],
+    indexTwo = []
 
 var json = (file)=>{
   var contents = fs.readFileSync(file)
@@ -25,10 +30,10 @@ var nafixCrawler = ()=>{
       .then((val)=>{
         val.forEach((val)=>{
           val.forEach((val)=>{
-            index.push("https://www.nafix.fr/sorties/vtt-2018/" + val)
+            indexOne.push("https://www.nafix.fr/sorties/vtt-2018/" + val)
           })
         })
-        return index
+        return indexOne
       })
       .then((res)=>{
         fs.writeFile('./exports_files/nafix_index.json', JSON.stringify(res), (err) => {
@@ -59,3 +64,5 @@ nafixCrawler()
   .then((go)=>{
     return nafixScrapper()
   })
+
+  //KLIKEGO WORKS !!
