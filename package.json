@@ -10,11 +10,9 @@
   "author": "Nicolas Jouanno",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.6.0",
     "bluebird": "^3.5.1",
     "electron": "^1.7.9",
     "fs": "0.0.1-security",
-    "jquery": "^3.2.1",
     "nightmare": "^2.10.0"
   }
 }

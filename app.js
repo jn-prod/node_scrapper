@@ -3,8 +3,8 @@ var fs = require('fs'),
     Promise = require('bluebird'),
     Nightmare = require('nightmare'),
     //Custom Modules  
-    crawlerOne = require('.routes/crawler/nafix_crawler'),
-    scrapperOne = require('.routes/scrapper/nafix_scrapper');
+    crawlerOne = require('./routes/crawler/nafix_crawler'),
+    scrapperOne = require('./routes/scrapper/nafix_scrapper');
 
 var index = []
 
@@ -17,7 +17,7 @@ var json = (file)=>{
 var nafixCrawler = ()=>{
   return new Promise((resolve,reject)=>{
     Promise
-      .map(json('./init-crawler/nafix_urls.json'),(urls)=>{
+      .map(json('./init_crawler/nafix_urls.json'),(urls)=>{
         return crawlerOne.crawlerInit(urls)
       },{concurrency: 3})
       .then((val)=>{
@@ -38,7 +38,6 @@ var nafixCrawler = ()=>{
 
       })     
   })
- 
 }
 
 var nafixScrapper = ()=>{
