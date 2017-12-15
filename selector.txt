@@ -1,3 +1,5 @@
+////////////// NAFIX
+
 => INDEX
 
 links =  [
@@ -39,3 +41,6 @@ var event = {
   tract : $('#tract > a').href
 }
 console.log(event)
+
+////////////// KLIKEGO
+
