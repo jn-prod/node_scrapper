@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+////////////// NAFIX
+
+>>>>>>> cheerio
 => INDEX
 
 links =  [
@@ -38,4 +43,11 @@ var event = {
   description : $('#txt_ref_int_decription > textarea').innerHTML,
   tract : $('#tract > a').href
 }
+<<<<<<< HEAD
 console.log(event)
+=======
+console.log(event)
+
+////////////// KLIKEGO
+
+>>>>>>> cheerio
