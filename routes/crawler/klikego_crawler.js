@@ -12,7 +12,7 @@ exports.crawlerInit = (url)=>{
     .evaluate(() => {
       var results = []
 
-      var links = $('tr > td > table > tbody > tr > td > a')
+      var links = $('.description > a')
 
       for(var i = 0; i < links.length; i++){
         results.push($($(links)[i]).attr('href'))
