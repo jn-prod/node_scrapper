@@ -12,10 +12,16 @@ exports.crawlerInit = (url)=>{
     .evaluate(() => {
       var results = []
 
-      var links = $('.description > a')
+      var links = $('tr > td > table > tbody > tr > td > a')
 
-      for(var i = 0; i < links.length; i++){
-        results.push($($(links)[i]).attr('href'))
+      for(var i = 0; i < (links.length); i++){
+        var j = i+1
+        var year = $($($('div#Position_Resultat > table > tbody > tr')[j]).find('td > div > div')[0]).text().split('/')[2]
+
+        results.push({
+          year : year,
+          link : $($(links)[i]).attr('href')
+        })
       }
 
       return results
@@ -25,7 +31,7 @@ exports.crawlerInit = (url)=>{
       resolve(crawler)
     })
     .catch((error)=>{
-      console.error(error)
+      reject(error)
     })   
   })
 }
