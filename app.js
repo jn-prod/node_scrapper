@@ -60,7 +60,7 @@ var contacts = (start_file, end_file)=>{
     })  
 }
 
-/*
+
 //VTT WORKS !!
 
 var vttCrawler = ()=>{
@@ -107,7 +107,7 @@ vttCrawler()
     return vttScrapper()
   })
 
-
+/*
   //RUN WORKS !!
 var athleCrawler = ()=>{
   return new Promise((resolve,reject)=>{
@@ -154,7 +154,7 @@ athleCrawler()
     return athleScrapper()
   })
 
-*/
+
 
 //TRI WORKS !!
 
@@ -176,4 +176,4 @@ var triCrawler = ()=>{
   })
 }
 
-triCrawler()
+triCrawler()*/
