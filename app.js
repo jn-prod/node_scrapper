@@ -110,7 +110,9 @@ app.set('port', 3000);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-  console.log('visite')
+})
+
+app.get('/scrapper-vtt', (req, res) => {
   vttCrawler()
     .then((go)=>{
       return vttScrapper()
