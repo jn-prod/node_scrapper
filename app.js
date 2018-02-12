@@ -2,6 +2,8 @@
 var fs = require('fs'),
     Promise = require('bluebird'),
     Nightmare = require('nightmare'),
+    express = require('express'),
+    app = express(),
 
     //Custom Modules VTT
     crawlerOne = require('./routes/crawler/vtt_crawler'),
@@ -102,10 +104,15 @@ var vttScrapper = ()=>{
     })
 }
 
-vttCrawler()
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+  vttCrawler()
   .then((go)=>{
     return vttScrapper()
   })
+})
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
 /*
   //RUN WORKS !!
