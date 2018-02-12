@@ -109,10 +109,11 @@ var vttScrapper = ()=>{
 app.set('port', 3000);
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('<a href="/scrapper-vtt">launch scrapper vtt</a>')
 })
 
 app.get('/scrapper-vtt', (req, res) => {
+  res.send('scrapper vtt launch!')
   vttCrawler()
     .then((go)=>{
       return vttScrapper()
