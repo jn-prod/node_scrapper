@@ -2,6 +2,7 @@
 var fs = require('fs'),
     Promise = require('bluebird'),
     Nightmare = require('nightmare'),
+    express = require('express'),
 
     //Custom Modules VTT
     crawlerOne = require('./routes/crawler/vtt_crawler'),
@@ -11,6 +12,8 @@ var fs = require('fs'),
     scrapperTwo = require('./routes/scrapper/athle_scrapper'),
     //Custom Modules TRI
     crawlerThree = require('./routes/crawler/tri_crawler');
+
+var app = express();
 
 var indexOne = [],
     indexTwo = []
@@ -102,10 +105,21 @@ var vttScrapper = ()=>{
     })
 }
 
-vttCrawler()
-  .then((go)=>{
-    return vttScrapper()
-  })
+
+app.set('port', 3000);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+  console.log('visite')
+  vttCrawler()
+    .then((go)=>{
+      return vttScrapper()
+    })
+})
+
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+});
 
 /*
   //RUN WORKS !!
