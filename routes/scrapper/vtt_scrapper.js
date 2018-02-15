@@ -33,6 +33,7 @@ exports.scrapperInit = (data) => {
     })
     .end()
     .then((scrapper) => {
+      console.log('One more !')
       resolve(scrapper)
     })
     .catch((error)=>{
