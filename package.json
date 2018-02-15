@@ -1,5 +1,5 @@
 {
-  "name": "nodeScraper",
+  "name": "node_scrapper",
   "version": "1.0.0",
   "description": "website Scraper",
   "main": "app.js",
@@ -20,5 +20,19 @@
     "fs": "0.0.1-security",
     "nightmare": "^2.10.0",
     "os": "^0.1.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jn-prod/node_scrapper.git"
+  },
+  "keywords": [
+    "scrapper",
+    "nodejs",
+    "nightmare"
+  ],
+  "bugs": {
+    "url": "https://github.com/jn-prod/node_scrapper/issues"
+  },
+  "homepage": "https://github.com/jn-prod/node_scrapper#readme"
 }
